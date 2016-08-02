@@ -1,0 +1,25 @@
+#CORE CONFIG
+
+prefix: '&9[&bMCBounty&9] '
+minimumReward: 50.0
+
+databaseHost: 'REPLACE_ME'
+databasePort: '3306' #Only replace this if you're sure your database isn't using port 3306
+databaseName: 'REPLACE_ME'
+databaseUsername: 'REPLACE_ME'
+databasePassword: 'REPLACE_ME'
+
+#ENGLISH:
+PLAYER_DEATH_NOT_TO_PLAYER: "TARGET has died but not due to a player! The bounty is still open!" #Variables: TARGET
+PLAYER_DEATH_TO_BOUNTY_CREATOR: "TARGET has been killed by KILLER, the creator of the bounty! No money will be paid out!" #Variables: TARGET, KILLER
+BOUNTY_FINISHED_INSUFFICIENT_FUNDS: "TARGET has been killed by KILLER but CREATOR has insufficient funds to pay the reward! ($REWARD)" #Variables: TARGET, KILLER, CREATOR, REWARD
+BOUNTY_FINISHED: "The bounty on TARGET has been completed by KILLER! CREATOR's reward of $REWARD has been paid out!" #Variables: TARGET, KILLER, CREATOR, REWARD
+BOUNTY_FINISHED_ALERT_CREATOR: "Your bounty on TARGET for $REWARD has just been completed by KILLER! The money has been given out!" #Variables: TARGET, KILLER, REWARD
+BOUNTY_FINISHED_ALERT_KILLER: "You have completed the bounty on TARGET created by CREATOR for $REWARD! The money has been placed in your account!" #Variables: TARGET, CREATOR, REWARD
+BOUNTY_REMOVED_TO_COMMAND_CALLER: "You have successfully removed the bounty on TARGET created by CREATOR." #Variables: TARGET, CREATOR
+BOUNTY_REMOVED_TO_ALL: "The bounty on TARGET created by CREATOR for $REWARD has been removed!" #Variables: TARGET, CREATOR, REWARD
+BOUNTY_CHANGED_PUBLIC_TO_COMMAND_CALLER: "You have successfully made the bounty on TARGET by CREATOR PUBLICSTATUS" #TARGET, CREATOR, PUBLICSTATUS
+BOUNTY_CHANGED_PUBLIC_TO_ALL: "The bounty on TARGET by CREATOR is now PUBLICSTATUS!" #Variables: TARGET, CREATOR, PUBLICSTATUS
+BOUNTY_CHANGED_REWARD_TO_SENDER: "You have changed the reward of the bounty on TARGET to $REWARD" #Variables: TARGET, REWARD
+BOUNTY_CHANGED_REWARD_TO_ALL: "The bounty on TARGET by CREATOR's reward has changed! It is now $REWARD!" #Variables: TARGET, CREATOR, REWARD
+BOUNTY_CREATED_TO_ALL: "A bounty has been created on TARGET for $REWARD by CREATOR!" #Variables: TARGET, CREATOR, REWARD

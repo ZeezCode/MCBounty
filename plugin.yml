@@ -1,0 +1,35 @@
+name: MCBounty
+version: 1.0
+main: me.zee.mcbounty.MCBounty
+author: Zee
+depend: [Vault]
+
+commands:
+  bounty:
+    aliases: [b]
+    description: Base command for MCBounty commands
+    
+permissions:
+  mcbounty.*:
+    description: Gives access to all MCBounty permissions
+    children:
+      mcbounty.help: true
+      mcbounty.bountyon: true
+      mcbounty.remove: true
+      mcbounty.admin: true
+      mcbounty.create: true
+  mcbounty.help:
+    description: Gives access to /bounty help
+    default: true
+  mcbounty.bountyon:
+    description: Gives access to /bounty on
+    default: true
+  mcbounty.remove:
+    description: Gives access to /bounty remove
+    default: true
+  mcbounty.admin:
+    description: Allows you to edit/remove bounties you didn't create
+    default: op
+  mcbounty.create:
+    description: Gives access to /bounty create
+    default: true
