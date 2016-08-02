@@ -30,7 +30,7 @@ public class CommandManager {
 		}
 	}
 	
-	@SuppressWarnings("deprecation") //TODO: Insure the creator has enough $ for the reward specified + minimum reward
+	@SuppressWarnings("deprecation")
 	public void bountyCreate(CommandSender sender, String[] args) { //bounty create <player> <reward> <public=true>
 		if (MCBounty.senderHasP(sender, "mcbounty.createbounty")) {
 			if (sender instanceof Player) {
@@ -160,7 +160,7 @@ public class CommandManager {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void bountySetPublic(CommandSender sender, String[] args) {
+	public void bountySetPublic(CommandSender sender, String[] args) { //bounty setpublic <player> <publicity>
 		if (MCBounty.senderHasP(sender, "mcbounty.setpublic")) {
 			if (args.length>=3) {
 				OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
@@ -231,7 +231,7 @@ public class CommandManager {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void bountyRemove(CommandSender sender, String[] args) {
+	public void bountyRemove(CommandSender sender, String[] args) { //bounty remove <player>
 		if (MCBounty.senderHasP(sender, "mcbounty.remove")) {
 			if (args.length>=2) {
 				OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
@@ -276,7 +276,7 @@ public class CommandManager {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void bountyOn(CommandSender sender, String[] args) {
+	public void bountyOn(CommandSender sender, String[] args) { //bounty on <player>
 		if (MCBounty.senderHasP(sender, "mcbounty.bountyon")) {
 			if (args.length>=2) {
 				OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
