@@ -37,7 +37,7 @@ public class DatabaseHandler {
 			sql.setBoolean(6, isPublic); //Is public
 			sql.setBoolean(7, false); //Is complete
 			sql.setLong(8, (long) new Date().getTime()/1000); //Time created
-			sql.setNull(9, Types.BIGINT);
+			sql.setNull(9, Types.BIGINT); //Time completed
 			
 			sql.execute();
 			sql.close();
