@@ -18,6 +18,33 @@ public class DatabaseHandler {
 	}
 	
 	/**
+	 * <p>Creates necessary database and table (if they don't already exist) for plugin usage</p>
+	 */
+	public void setupDatabase() {
+		openConnection();
+		try {
+			PreparedStatement createTable = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `bounties` ("
+				+"`id` int(11) NOT NULL AUTO_INCREMENT,"
+    			+"`creator` text NOT NULL,"
+    			+"`target` text NOT NULL,"
+    			+"`killer` text NULL default NULL,"
+    			+"`reward` double NOT NULL,"
+    			+"`public` tinyint(1) NOT NULL,"
+    			+"`complete` tinyint(1) NOT NULL,"
+    			+"`timecreated` bigint(20) NOT NULL,"
+    			+"`timecompleted` bigint(20) NULL default NULL,"
+    			+"PRIMARY KEY (`id`)"
+				+");");
+			createTable.execute();
+			createTable.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+	}
+	
+	/**
 	 * <p>Adds a new bounty to the database, should be checked for valid values before using this method.</p>
 	 * 
 	 * @param creator The UUID of the creator of the bounty
