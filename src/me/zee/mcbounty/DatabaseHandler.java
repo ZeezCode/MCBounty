@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.Date;
 import java.util.UUID;
@@ -21,10 +22,27 @@ public class DatabaseHandler {
 	 * <p>Creates necessary database and table (if they don't already exist) for plugin usage</p>
 	 */
 	public void setupDatabase() {
-		openConnection();
 		try {
+			connection = DriverManager.getConnection("jdbc:mysql://" + plugin.getConfig().getString("databaseHost") + ":" 
+					+ plugin.getConfig().getString("databasePort") + "/", 
+					plugin.getConfig().getString("databaseUsername"), 
+					plugin.getConfig().getString("databasePassword"));
+			Statement stmt = connection.createStatement();
+			int result = stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + plugin.getConfig().getString("databaseName") + ";");
+			if (result==0)
+				plugin.getLogger().info("CTINE Success");
+			else
+				plugin.getLogger().info("CTINE Failed ("+result+")");
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		
+		openConnection();
+		try { //Second try/catch 'cause I want to open a new connection and this makes it look nicer
 			PreparedStatement createTable = connection.prepareStatement("CREATE TABLE IF NOT EXISTS `bounties` ("
-				+"`id` int(11) NOT NULL AUTO_INCREMENT,"
+				+"`bid` int(11) NOT NULL AUTO_INCREMENT,"
     			+"`creator` text NOT NULL,"
     			+"`target` text NOT NULL,"
     			+"`killer` text NULL default NULL,"
@@ -33,7 +51,7 @@ public class DatabaseHandler {
     			+"`complete` tinyint(1) NOT NULL,"
     			+"`timecreated` bigint(20) NOT NULL,"
     			+"`timecompleted` bigint(20) NULL default NULL,"
-    			+"PRIMARY KEY (`id`)"
+    			+"PRIMARY KEY (`bid`)"
 				+");");
 			createTable.execute();
 			createTable.close();
