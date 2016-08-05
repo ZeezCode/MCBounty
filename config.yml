@@ -5,7 +5,7 @@ minimumReward: 50.0
 
 databaseHost: 'REPLACE_ME'
 databasePort: '3306' #Only replace this if you're sure your database isn't using port 3306
-databaseName: 'REPLACE_ME'
+databaseName: 'REPLACE_ME' #Plugin will not create the database, this must already exist
 databaseUsername: 'REPLACE_ME'
 databasePassword: 'REPLACE_ME'
 
