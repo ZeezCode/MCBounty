@@ -18,6 +18,7 @@ permissions:
       mcbounty.remove: true
       mcbounty.admin: true
       mcbounty.create: true
+      mcbounty.info: true
   mcbounty.help:
     description: Gives access to /bounty help
     default: true
@@ -32,4 +33,7 @@ permissions:
     default: op
   mcbounty.create:
     description: Gives access to /bounty create
+    default: true
+  mcbounty.info:
+    description: Gives access to /bounty info
     default: true
