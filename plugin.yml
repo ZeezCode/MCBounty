@@ -1,5 +1,5 @@
 name: MCBounty
-version: 1.0
+version: 1.1
 main: me.zee.mcbounty.MCBounty
 author: Zee
 depend: [Vault]
