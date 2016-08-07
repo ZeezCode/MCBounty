@@ -41,6 +41,10 @@ public class CommandManager {
 						util.sendMessage(sender, ChatColor.RED+"Unable to find player");
 						return;
 					}
+					if (target.getUniqueId().equals(creator.getUniqueId())) { //If creator tries to make a bounty on themself
+						util.sendMessage(sender, ChatColor.RED+"You can't create a bounty on yourself!");
+						return;
+					}
 					boolean hasBounty = dbHandler.playerHasOpenBounty(target.getUniqueId());
 					if (hasBounty) {
 						util.sendMessage(sender, ChatColor.RED+"There is already an open bounty on this player!");
