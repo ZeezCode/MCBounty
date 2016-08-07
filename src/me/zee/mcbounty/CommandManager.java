@@ -20,6 +20,7 @@ public class CommandManager {
 		if (MCBounty.senderHasP(sender, "mcbounty.help")) {
 			util.sendMessage(sender, "MCBounty Command Help:\n"
 					+"/bounty help\n"
+					+"/bounty info\n"
 					+"/bounty create <player> <reward> <public (true/false)\n"
 					+"/bounty setreward <player> <newreward>\n"
 					+"/bounty setpublic <player> <ispublic>\n"
@@ -298,6 +299,18 @@ public class CommandManager {
 			} else {
 				util.sendMessage(sender, ChatColor.RED+"Invalid arguments! Use: /bounty on <player>");
 			}
+		} else {
+			util.sendNoAccess(sender);
+		}
+	}
+	
+	public void bountyInfo(CommandSender sender) { //bounty info
+		if (MCBounty.senderHasP(sender, "mcbounty.info")) {
+			util.sendMessage(sender, "---MCBounty Plugin Info---\n"
+					+"Author: Zee (AKA: Zmaster007)\n"
+					+"Version: "+MCBounty.getDesc().getVersion()+"\n"
+					+"This plugin is open source! \n"
+					+"http://GitHub.com/ZeezCode/MCBounty/");
 		} else {
 			util.sendNoAccess(sender);
 		}
