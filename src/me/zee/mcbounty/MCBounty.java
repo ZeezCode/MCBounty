@@ -20,6 +20,7 @@ public class MCBounty extends JavaPlugin implements Listener {
 	private DatabaseHandler dbHandler;
 	private Utilities util;
 	private static double minReward;
+	private static PluginDescriptionFile pdfFile;
 	
 	public enum EventMessage { // 3/line for legibility
 		PLAYER_DEATH_NOT_TO_PLAYER, PLAYER_DEATH_TO_BOUNTY_CREATOR, BOUNTY_FINISHED_INSUFFICIENT_FUNDS,
@@ -30,7 +31,7 @@ public class MCBounty extends JavaPlugin implements Listener {
 	}
 	
 	public void onEnable() {
-		PluginDescriptionFile pdfFile = getDescription();
+		pdfFile = getDescription();
 		getLogger().info(pdfFile.getName()+" has been enabled running version "+pdfFile.getVersion()+".");
 		saveDefaultConfig();
 		
@@ -40,6 +41,7 @@ public class MCBounty extends JavaPlugin implements Listener {
 
 		setupEconomy();
 		setupPermissions();
+		dbHandler.setupDatabase();
 		
 		getCommand("bounty").setExecutor(new CMDBounty(util, dbHandler));
 		Bukkit.getPluginManager().registerEvents(this, this);
@@ -159,5 +161,14 @@ public class MCBounty extends JavaPlugin implements Listener {
 	 */
 	public static double getMinimumReward() {
 		return minReward;
+	}
+	
+	/**
+	 * <p>Returns the PluginDescriptionFile for MCBounty</p>
+	 * 
+	 * @return PluginDescriptionFile The pdfFile for MCBounty
+	 */
+	public static PluginDescriptionFile getDesc() {
+		return pdfFile;
 	}
 }
