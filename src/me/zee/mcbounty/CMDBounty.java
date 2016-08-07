@@ -39,6 +39,9 @@ public class CMDBounty implements CommandExecutor {
 				else if (arg0.equalsIgnoreCase("on")) { //bounty on <player>
 					cmdMan.bountyOn(sender, args); //Done
 				}
+				else if (arg0.equalsIgnoreCase("info")) { //bounty info
+					cmdMan.bountyInfo(sender);
+				}
 				else { //Unrecognized command
 					util.sendMessage(sender, ChatColor.RED+"Unrecognized command! Type /bounty help for a list of all commands");
 				}
