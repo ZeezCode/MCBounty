@@ -28,11 +28,7 @@ public class DatabaseHandler {
 					plugin.getConfig().getString("databaseUsername"), 
 					plugin.getConfig().getString("databasePassword"));
 			Statement stmt = connection.createStatement();
-			int result = stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + plugin.getConfig().getString("databaseName") + ";");
-			if (result==0)
-				plugin.getLogger().info("CTINE Success");
-			else
-				plugin.getLogger().info("CTINE Failed ("+result+")");
+			stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + plugin.getConfig().getString("databaseName") + ";");
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
