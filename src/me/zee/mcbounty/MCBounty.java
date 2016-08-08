@@ -1,7 +1,9 @@
 package me.zee.mcbounty;
 
+import java.net.URL;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
+import org.apache.commons.io.IOUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -13,6 +15,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.fusesource.jansi.Ansi;
 
 public class MCBounty extends JavaPlugin implements Listener {
 	private static Permission permission = null;
@@ -39,6 +42,7 @@ public class MCBounty extends JavaPlugin implements Listener {
 		dbHandler = new DatabaseHandler(this);
 		util = new Utilities(this);
 
+		checkVersion();
 		setupEconomy();
 		setupPermissions();
 		dbHandler.setupDatabase();
@@ -105,6 +109,30 @@ public class MCBounty extends JavaPlugin implements Listener {
 			String finalMsg = rawMsg.replaceAll("TARGET", ply.getName()).replaceAll("CREATOR", creator.getName())
 					.replaceAll("REWARD", Double.toString(bounty.getReward()));
 			util.sendMessage(killer, finalMsg);
+		}
+	}
+	
+	private void checkVersion() {
+		//https://raw.githubusercontent.com/ZeezCode/MCBounty/master/version.txt
+		try {
+			String newestVersionAsString = IOUtils.toString(new URL("https://raw.githubusercontent.com/ZeezCode/MCBounty/master/version.txt"));
+			double newestVersion = Double.parseDouble(newestVersionAsString); //Assumes the file in my GitHub has a valid Double value, I could verify this but eh
+			double localVersion = Double.parseDouble(getDescription().getVersion());
+			if (localVersion==newestVersion) { //Plugin is up to date
+				String message = Ansi.ansi().fg(Ansi.Color.GREEN) + "MCBounty is up to date!";	//Apparently using color codes in server console w/o Bukkit's broadcast
+				getLogger().info(message + "\u001B[0m");					//is unnecessarily difficult. #VolvoPlzFix
+			}
+			else if (localVersion<newestVersion) { //Plugin is out of date
+				String message = Ansi.ansi().fg(Ansi.Color.RED) + "MCBounty is out of date! The newest version is "+newestVersion+" and you are running "+localVersion+".";
+				getLogger().info(message + "\u001B[0m");
+			}
+			else { //Something magical happened and plugin somehow has a newer version than the newest version - wth has happened
+				String message = Ansi.ansi().fg(Ansi.Color.YELLOW) + "Your copy of MCBounty somehow has a newer version than the latest version???";
+				getLogger().info(message + "\u001B[0m");
+			}
+		} catch (Exception e) {
+			String message = Ansi.ansi().fg(Ansi.Color.RED) + "MCBounty failed to check version!";
+			getLogger().info(message + "\u001B[0m");
 		}
 	}
 	
