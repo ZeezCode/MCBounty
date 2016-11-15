@@ -7,10 +7,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 
 public class Bounty {
-	private int bid;
 	private UUID creator, target, killer;
-	private double reward;
 	private boolean isPublic, isComplete;
+	private double reward;
+	private int bid;
 	
 	public Bounty(int bid, UUID creator, UUID target, UUID killer, double reward, boolean isPublic, boolean isComplete) {
 		this.bid = bid;
